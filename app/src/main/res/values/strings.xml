@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">ExamPrep</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="button_colors_fragment">Colors Fragment</string>
+    <string name="button_send_user">Send User</string>
+
+    <string name="hint_enter_first_name">Enter first name</string>
+    <string name="hint_enter_last_name">Enter last name</string>
+    <string name="button_change_user">Change User</string>
+    <string name="menu_share">Share first name</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_about">About</string>
 </resources>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.baileytye.examprep.ui.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_colorsFragment"
+            app:destination="@id/colorsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/fragment_fade_exit"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_homeFragment_to_receiveTextFragment"
+            app:destination="@id/receiveUserFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/colorsFragment"
+        android:name="com.baileytye.examprep.ui.ColorsFragment"
+        android:label="fragment_colors"
+        tools:layout="@layout/fragment_colors" />
+    <fragment
+        android:id="@+id/receiveUserFragment"
+        android:name="com.baileytye.examprep.ui.ReceiveUserFragment"
+        android:label="ReceiveUserFragment"
+        tools:layout="@layout/fragment_receive_user">
+        <argument
+            android:name="receivedUser"
+            app:argType="com.baileytye.examprep.data.User" />
+    </fragment>
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.baileytye.examprep.ui.AboutFragment"
+        android:label="AboutFragment"
+        tools:layout="@layout/fragment_about" />
+</navigation>
