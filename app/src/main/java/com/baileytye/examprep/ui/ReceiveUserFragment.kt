@@ -12,6 +12,8 @@ import com.baileytye.examprep.R
 import com.baileytye.examprep.data.User
 import com.baileytye.examprep.databinding.FragmentReceiveUserBinding
 
+const val KEY_USER = "key_user"
+
 /**
  * A simple [Fragment] subclass.
  */
@@ -34,11 +36,16 @@ class ReceiveUserFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         binding.apply {
-            receivedUser = args.receivedUser
+            receivedUser = savedInstanceState?.getParcelable(KEY_USER) ?: args.receivedUser
             buttonChangeUser.setOnClickListener {
                 receivedUser = User("Changed 1", "Changed 2")
             }
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putParcelable(KEY_USER, binding.receivedUser)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.baileytye.examprep.R
 import com.baileytye.examprep.data.User
 import com.baileytye.examprep.databinding.FragmentHomeBinding
+import com.baileytye.examprep.util.hideKeyboard
 
 /**
  * A simple [Fragment] subclass.
@@ -32,12 +33,15 @@ class HomeFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
         binding.apply {
             buttonColorsFragment.setOnClickListener {
+                this@HomeFragment.hideKeyboard()
                 findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToColorsFragment())
             }
 
             buttonSendUser.setOnClickListener {
+                this@HomeFragment.hideKeyboard()
                 findNavController().navigate(
                     HomeFragmentDirections.actionHomeFragmentToReceiveTextFragment(
                         User(editTextFirstName.text.toString(), editTextLastName.text.toString())
