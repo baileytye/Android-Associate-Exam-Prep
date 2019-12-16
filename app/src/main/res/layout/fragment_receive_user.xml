@@ -50,14 +50,33 @@
 
         <Button
             android:id="@+id/buttonChangeUser"
-            android:layout_width="wrap_content"
+            style="@style/Widget.MaterialComponents.Button"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/button_change_user"
+            android:layout_marginHorizontal="16dp"
             android:onClick="@{() -> userViewModel.changeUser()}"
+            android:text="@string/button_change_user"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/buttonUndo"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewFirstName" />
+
+        <Button
+            android:id="@+id/buttonUndo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:enabled="@{userViewModel.undoButtonVisible}"
+            android:onClick="@{() -> userViewModel.undoChangeUser()}"
+            android:text="@string/button_undo"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:layout_constraintBottom_toBottomOf="@id/buttonChangeUser"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/buttonChangeUser"
+            app:layout_constraintTop_toTopOf="@id/buttonChangeUser" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

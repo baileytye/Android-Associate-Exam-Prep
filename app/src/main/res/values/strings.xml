@@ -5,14 +5,19 @@
 
     <string name="surround_with_quotes">\"%s\"</string>
 
-    <string name="button_colors_fragment">Colors Fragment</string>
+    <string name="button_mirror_text_fragment">Two-way Data Binding Example</string>
     <string name="button_send_user">Send User</string>
     <string name="button_change_user">Change User</string>
+    <string name="button_undo">Undo</string>
 
     <string name="hint_enter_first_name">Enter first name</string>
     <string name="hint_enter_last_name">Enter last name</string>
+    <string name="hint_enter_text_above">Enter text above</string>
+    <string name="hint_enter_text_to_mirror_below">Enter text to mirror below</string>
 
     <string name="menu_share">Share first name</string>
     <string name="menu_home">Home</string>
     <string name="menu_about">About</string>
+
+    <string name="message_undo">Restored user names</string>
 </resources>

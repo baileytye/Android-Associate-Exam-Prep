@@ -35,7 +35,7 @@ class HomeFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         binding.apply {
-            buttonColorsFragment.setOnClickListener {
+            buttonMirrorFragment.setOnClickListener {
                 this@HomeFragment.hideKeyboard()
                 findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToColorsFragment())
             }

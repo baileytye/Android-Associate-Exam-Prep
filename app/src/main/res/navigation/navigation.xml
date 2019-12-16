@@ -8,11 +8,11 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.baileytye.examprep.ui.HomeFragment"
-        android:label="HomeFragment"
+        android:label="Home"
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_colorsFragment"
-            app:destination="@id/colorsFragment"
+            app:destination="@id/mirrorTextFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
@@ -26,14 +26,14 @@
             app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
-        android:id="@+id/colorsFragment"
-        android:name="com.baileytye.examprep.ui.ColorsFragment"
-        android:label="fragment_colors"
-        tools:layout="@layout/fragment_colors" />
+        android:id="@+id/mirrorTextFragment"
+        android:name="com.baileytye.examprep.ui.mirror.MirrorTextFragment"
+        android:label="Two Way Data Binding"
+        tools:layout="@layout/fragment_mirror_text" />
     <fragment
         android:id="@+id/receiveUserFragment"
         android:name="com.baileytye.examprep.ui.user.ReceiveUserFragment"
-        android:label="ReceiveUserFragment"
+        android:label="Safe Args/Data Binding"
         tools:layout="@layout/fragment_receive_user">
         <argument
             android:name="receivedUser"
