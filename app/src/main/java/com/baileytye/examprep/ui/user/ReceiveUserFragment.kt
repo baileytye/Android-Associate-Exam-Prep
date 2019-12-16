@@ -1,4 +1,4 @@
-package com.baileytye.examprep.ui
+package com.baileytye.examprep.ui.user
 
 
 import android.content.Intent
@@ -7,12 +7,11 @@ import android.view.*
 import androidx.core.app.ShareCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.baileytye.examprep.R
 import com.baileytye.examprep.data.User
 import com.baileytye.examprep.databinding.FragmentReceiveUserBinding
-
-const val KEY_USER = "key_user"
 
 /**
  * A simple [Fragment] subclass.
@@ -30,22 +29,19 @@ class ReceiveUserFragment : Fragment() {
             R.layout.fragment_receive_user, container, false
         )
         setHasOptionsMenu(true)
-        return binding.root
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
         binding.apply {
-            receivedUser = savedInstanceState?.getParcelable(KEY_USER) ?: args.receivedUser
-            buttonChangeUser.setOnClickListener {
-                receivedUser = User("Changed 1", "Changed 2")
-            }
-        }
-    }
+            receivedUser = args.receivedUser
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putParcelable(KEY_USER, binding.receivedUser)
+            val viewModelFactory = UserViewModelFactory(receivedUser as User)
+            userViewModel = ViewModelProvider(
+                this@ReceiveUserFragment,
+                viewModelFactory
+            )[UserViewModel::class.java]
+
+            //Allows the live data to automatically update the views
+            lifecycleOwner = this@ReceiveUserFragment.viewLifecycleOwner
+        }
+        return binding.root
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

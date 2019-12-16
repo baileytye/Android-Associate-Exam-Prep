@@ -6,6 +6,10 @@
     <data>
 
         <variable
+            name="userViewModel"
+            type="com.baileytye.examprep.ui.user.UserViewModel" />
+
+        <variable
             name="receivedUser"
             type="com.baileytye.examprep.data.User" />
     </data>
@@ -13,14 +17,14 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.ReceiveUserFragment">
+        tools:context=".ui.user.ReceiveUserFragment">
 
         <TextView
             android:id="@+id/textViewFirstName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@{receivedUser.firstName}"
+            android:text="@{userViewModel.user.firstName}"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/textViewLastName"
@@ -29,12 +33,13 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="First Name" />
 
+        <!-- You don't need userViewModel.user.value -> it automatically happens  -->
         <TextView
             android:id="@+id/textViewLastName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="@{receivedUser.lastName}"
+            android:text="@{@string/surround_with_quotes(userViewModel.user.lastName)}"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintBottom_toBottomOf="@+id/textViewFirstName"
             app:layout_constraintEnd_toEndOf="parent"
@@ -48,6 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/button_change_user"
+            android:onClick="@{() -> userViewModel.changeUser()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

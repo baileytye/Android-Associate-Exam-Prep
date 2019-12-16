@@ -32,7 +32,7 @@
         tools:layout="@layout/fragment_colors" />
     <fragment
         android:id="@+id/receiveUserFragment"
-        android:name="com.baileytye.examprep.ui.ReceiveUserFragment"
+        android:name="com.baileytye.examprep.ui.user.ReceiveUserFragment"
         android:label="ReceiveUserFragment"
         tools:layout="@layout/fragment_receive_user">
         <argument
