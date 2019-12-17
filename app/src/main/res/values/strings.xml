@@ -20,4 +20,5 @@
     <string name="menu_about">About</string>
 
     <string name="message_undo">Restored user names</string>
+    <string name="button_recycler_example">Recycler Example</string>
 </resources>

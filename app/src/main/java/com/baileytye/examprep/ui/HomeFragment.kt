@@ -37,7 +37,7 @@ class HomeFragment : Fragment() {
         binding.apply {
             buttonMirrorFragment.setOnClickListener {
                 this@HomeFragment.hideKeyboard()
-                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToColorsFragment())
+                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToMirrorTextFragment())
             }
 
             buttonSendUser.setOnClickListener {
@@ -47,6 +47,10 @@ class HomeFragment : Fragment() {
                         User(editTextFirstName.text.toString(), editTextLastName.text.toString())
                     )
                 )
+            }
+            buttonRecyclerView.setOnClickListener {
+                this@HomeFragment.hideKeyboard()
+                findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToUserListFragment())
             }
         }
     }

@@ -8,23 +8,23 @@ import com.baileytye.examprep.data.User
 
 class UserViewModel(userIn: User) : ViewModel() {
 
-    private val _originalUser = MutableLiveData<User>()
+    private val _originalUser: User
 
     private val _user = MutableLiveData<User>()
     val user: LiveData<User>
         get() = _user
+
+    init {
+        _user.value = userIn
+        _originalUser = userIn
+    }
 
     private var _showSnackbarEvent = MutableLiveData<Boolean>()
     val showSnackBarEvent: LiveData<Boolean>
         get() = _showSnackbarEvent
 
     val undoButtonVisible = Transformations.map(_user) {
-        _originalUser.value != it
-    }
-
-    init {
-        _user.value = userIn
-        _originalUser.value = userIn
+        _originalUser != it
     }
 
     fun changeUser() {
@@ -32,7 +32,7 @@ class UserViewModel(userIn: User) : ViewModel() {
     }
 
     fun undoChangeUser() {
-        _user.value = _originalUser.value
+        _user.value = _originalUser
         _showSnackbarEvent.value = true
     }
 

@@ -47,11 +47,13 @@ class ReceiveUserFragment : Fragment() {
 
             viewModel.showSnackBarEvent.observe(viewLifecycleOwner, Observer {
                 if (it == true) {
-                    Snackbar.make(
-                        activity!!.findViewById(android.R.id.content),
-                        getString(R.string.message_undo),
-                        Snackbar.LENGTH_SHORT // How long to display the message.
-                    ).show()
+                    activity?.let { activity ->
+                        Snackbar.make(
+                            activity.findViewById(android.R.id.content),
+                            getString(R.string.message_undo),
+                            Snackbar.LENGTH_SHORT
+                        ).show()
+                    }
                     viewModel.doneShowingSnackbar()
                 }
             })
