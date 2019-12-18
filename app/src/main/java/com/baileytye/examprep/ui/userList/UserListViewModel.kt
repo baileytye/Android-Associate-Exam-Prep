@@ -7,12 +7,18 @@ import com.baileytye.examprep.data.User
 
 class UserListViewModel : ViewModel() {
 
-    private val _userList = MutableLiveData<List<User>>()
+    private val _userList = MutableLiveData<MutableList<User>>()
 
-    val userList: LiveData<List<User>>
+    val userList: LiveData<MutableList<User>>
         get() = _userList
 
     init {
-        _userList.value = listOf(User("Garry", "Smith"), User("John", "Doe"))
+        _userList.value = mutableListOf(User("Garry", "Smith"), User("John", "Doe"))
+    }
+
+    fun removeUser(user: User) {
+        _userList.value?.let {
+            _userList.value = _userList.value?.apply { remove(user) }
+        }
     }
 }

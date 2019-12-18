@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.baileytye.examprep.R
 import com.baileytye.examprep.databinding.FragmentUserListBinding
@@ -28,9 +29,17 @@ class UserListFragment : Fragment() {
         viewModel = ViewModelProvider(this)[UserListViewModel::class.java]
         binding.apply {
             userRecyclerView.adapter =
-                UserListAdapter().apply { submitList(viewModel.userList.value) }
+                UserListAdapter(UserItemListener {
+                    viewModel.removeUser(it)
+                    println("DEBUG: item clicked, size = ${viewModel.userList.value?.size}")
+                }).apply { submitList(viewModel.userList.value) }
             userRecyclerView.addSpacing()
+            viewModel.userList.observe(viewLifecycleOwner, Observer {
+                (userRecyclerView.adapter as UserListAdapter).submitList(it.toList())
+            })
         }
+
+
         return binding.root
     }
 }

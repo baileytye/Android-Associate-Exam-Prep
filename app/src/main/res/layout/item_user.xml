@@ -6,6 +6,10 @@
         <variable
             name="user"
             type="com.baileytye.examprep.data.User" />
+
+        <variable
+            name="clickListener"
+            type="com.baileytye.examprep.ui.userList.UserItemListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -13,13 +17,15 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:onClick="@{() -> clickListener.onClick(user)}"
         android:padding="16dp">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/appCompatImageView"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:background="@drawable/shape_circle"
+            app:randomColor="@{user}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -29,7 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:text="@{user.firstName}"
+            app:firstNameFormatted="@{user}"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/appCompatImageView"

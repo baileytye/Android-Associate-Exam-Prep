@@ -8,21 +8,29 @@ import androidx.recyclerview.widget.RecyclerView
 import com.baileytye.examprep.data.User
 import com.baileytye.examprep.databinding.ItemUserBinding
 
-class UserListAdapter : ListAdapter<User, UserListAdapter.UserViewHolder>(UserDiffCallback()) {
+class UserListAdapter(val clickListener: UserItemListener) :
+    ListAdapter<User, UserListAdapter.UserViewHolder>(UserDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         return UserViewHolder.from(parent)
     }
 
     override fun onBindViewHolder(holder: UserViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position), clickListener)
     }
 
     class UserViewHolder private constructor(val binding: ItemUserBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: User) {
-            binding.user = item
+        fun bind(
+            item: User,
+            clickListener: UserItemListener
+        ) {
+            binding.apply {
+                user = item
+                this.clickListener = clickListener
+                executePendingBindings()
+            }
         }
 
         companion object {
@@ -45,4 +53,8 @@ class UserListAdapter : ListAdapter<User, UserListAdapter.UserViewHolder>(UserDi
         }
 
     }
+}
+
+class UserItemListener(val clickListener: (user: User) -> Unit) {
+    fun onClick(user: User) = clickListener(user)
 }
