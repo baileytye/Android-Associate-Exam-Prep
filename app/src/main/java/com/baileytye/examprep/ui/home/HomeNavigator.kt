@@ -5,4 +5,5 @@ interface HomeNavigator {
     fun onStartMirrorText()
     fun onStartReceiveUser()
     fun onStartUserList()
+    fun onStartRetrofit()
 }

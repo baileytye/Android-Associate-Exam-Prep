@@ -16,7 +16,9 @@ buildscript {
     }
 
     ext {
-        version_navigation = '2.2.0-rc03'
+        version_navigation = '2.2.0-rc04'
+        version_kotlin_coroutines = '1.3.3'
+        version_retrofit_coroutines_adapter = ''
     }
 }
 

@@ -30,18 +30,19 @@ class HomeFragment : Fragment(), HomeNavigator {
             inflater,
             R.layout.fragment_home, container, false
         )
-        viewModel = ViewModelProvider(this, HomeViewModelFactory(this))[HomeViewModel::class.java]
+        viewModel = ViewModelProvider(this, HomeViewModelFactory())[HomeViewModel::class.java]
+        viewModel.setNavigator(this)
         binding.viewModel = viewModel
         return binding.root
     }
 
     override fun onStartMirrorText() {
-        this@HomeFragment.hideKeyboard()
+        this.hideKeyboard()
         findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToMirrorTextFragment())
     }
 
     override fun onStartReceiveUser() {
-        this@HomeFragment.hideKeyboard()
+        this.hideKeyboard()
         findNavController().navigate(
             HomeFragmentDirections.actionHomeFragmentToReceiveTextFragment(
                 User(
@@ -53,7 +54,12 @@ class HomeFragment : Fragment(), HomeNavigator {
     }
 
     override fun onStartUserList() {
-        this@HomeFragment.hideKeyboard()
+        this.hideKeyboard()
         findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToUserListFragment())
+    }
+
+    override fun onStartRetrofit() {
+        this.hideKeyboard()
+        findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToRetrofitMoshiFragment())
     }
 }

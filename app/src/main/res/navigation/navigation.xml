@@ -15,6 +15,7 @@
             app:destination="@+id/mirrorTextFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
+            app:launchSingleTop="true"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
         <action
@@ -22,6 +23,7 @@
             app:destination="@id/receiveUserFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
+            app:launchSingleTop="true"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
         <action
@@ -29,6 +31,15 @@
             app:destination="@id/userListFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
+            app:launchSingleTop="true"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_homeFragment_to_retrofitMoshiFragment"
+            app:destination="@id/retrofitMoshiFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:launchSingleTop="true"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
     </fragment>
@@ -56,4 +67,9 @@
         android:name="com.baileytye.examprep.ui.userList.UserListFragment"
         android:label="Binding Recycler View"
         tools:layout="@layout/fragment_user_list" />
+    <fragment
+        android:id="@+id/retrofitMoshiFragment"
+        android:name="com.baileytye.examprep.ui.retrofitMoshi.RetrofitMoshiFragment"
+        android:label="retrofit_moshi_fragment"
+        tools:layout="@layout/retrofit_moshi_fragment" />
 </navigation>
