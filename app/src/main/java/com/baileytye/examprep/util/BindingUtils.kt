@@ -31,6 +31,11 @@ fun TextView.setText(double: Double) {
     text = double.toString()
 }
 
+@BindingAdapter("android:text")
+fun TextView.setText(int: Int) {
+    text = int.toString()
+}
+
 //User isn't used, but normally you would change the image based on the input
 @BindingAdapter("randomColor")
 fun ImageView.setRandomColor(user: User) {

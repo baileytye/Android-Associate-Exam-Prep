@@ -1,5 +1,7 @@
 package com.baileytye.examprep.ui.home
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import java.lang.ref.WeakReference
 
@@ -7,6 +9,10 @@ import java.lang.ref.WeakReference
 class HomeViewModel : ViewModel() {
 
     private var homeNavigator: WeakReference<HomeNavigator>? = null
+
+    //Instead of being updated by the fragment, this would normally be updated here with
+    //shared prefs being injected by dagger, and could override set to auto update shared prefs
+    var counter = MutableLiveData(0)
 
     fun setNavigator(navigator: HomeNavigator) {
         homeNavigator = WeakReference(navigator)

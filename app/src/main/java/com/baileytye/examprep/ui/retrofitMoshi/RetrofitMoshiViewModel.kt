@@ -1,6 +1,7 @@
 package com.baileytye.examprep.ui.retrofitMoshi
 
 import androidx.lifecycle.*
+import com.baileytye.examprep.data.Event
 import com.baileytye.examprep.data.MarsProperty
 import com.baileytye.examprep.data.MarsRepository
 import com.baileytye.examprep.data.Result
@@ -17,8 +18,8 @@ class RetrofitMoshiViewModel : ViewModel() {
         getMarsProperties()
     }
 
-    private val _navigateToSelectedProperty = MutableLiveData<MarsProperty>()
-    val navigateToSelectedProperty: LiveData<MarsProperty>
+    private val _navigateToSelectedProperty = MutableLiveData<Event<MarsProperty>>()
+    val navigateToSelectedProperty: LiveData<Event<MarsProperty>>
         get() = _navigateToSelectedProperty
 
     val contentVisibility = Transformations.map(_properties) {
@@ -41,11 +42,7 @@ class RetrofitMoshiViewModel : ViewModel() {
     }
 
     fun displayPropertyDetails(marsProperty: MarsProperty) {
-        _navigateToSelectedProperty.value = marsProperty
-    }
-
-    fun displayPropertyDetailsComplete() {
-        _navigateToSelectedProperty.value = null
+        _navigateToSelectedProperty.value = Event(marsProperty)
     }
 
     private fun getMarsProperties() {

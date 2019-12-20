@@ -7,11 +7,10 @@ import android.view.*
 import androidx.core.app.ShareCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.baileytye.examprep.R
-import com.baileytye.examprep.data.User
+import com.baileytye.examprep.data.EventObserver
 import com.baileytye.examprep.databinding.FragmentReceiveUserBinding
 import com.google.android.material.snackbar.Snackbar
 
@@ -21,7 +20,7 @@ import com.google.android.material.snackbar.Snackbar
 class ReceiveUserFragment : Fragment() {
     lateinit var binding: FragmentReceiveUserBinding
     private val args: ReceiveUserFragmentArgs by navArgs()
-    lateinit var viewModel: UserViewModel
+    private val viewModel: UserViewModel by viewModels { UserViewModelFactory(args.receivedUser) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,20 +32,14 @@ class ReceiveUserFragment : Fragment() {
         )
         setHasOptionsMenu(true)
         binding.apply {
-            receivedUser = args.receivedUser
 
-            val viewModelFactory = UserViewModelFactory(receivedUser as User)
-            viewModel = ViewModelProvider(
-                this@ReceiveUserFragment,
-                viewModelFactory
-            )[UserViewModel::class.java]
             userViewModel = viewModel
 
             //Allows the live data to automatically update the views
             lifecycleOwner = this@ReceiveUserFragment.viewLifecycleOwner
 
-            viewModel.showSnackBarEvent.observe(viewLifecycleOwner, Observer {
-                if (it == true) {
+            viewModel.showSnackBarEvent.observe(viewLifecycleOwner, EventObserver { show ->
+                if (show) {
                     activity?.let { activity ->
                         Snackbar.make(
                             activity.findViewById(android.R.id.content),
@@ -54,7 +47,6 @@ class ReceiveUserFragment : Fragment() {
                             Snackbar.LENGTH_SHORT
                         ).show()
                     }
-                    viewModel.doneShowingSnackbar()
                 }
             })
         }
