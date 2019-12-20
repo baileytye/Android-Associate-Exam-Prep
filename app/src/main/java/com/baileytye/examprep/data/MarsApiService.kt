@@ -1,5 +1,8 @@
 package com.baileytye.examprep.data
 
+/**
+ * Code taken from Udacity lesson 8
+ */
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
@@ -34,7 +37,7 @@ interface MarsApiService {
      * The @GET annotation indicates that the "realestate" endpoint will be requested with the GET
      * HTTP method
      */
-    @GET("hello")
+    @GET("realestate")
     suspend fun getProperties():
             List<MarsProperty>
 }

@@ -4,39 +4,71 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.navigation.fragment.findNavController
 import com.baileytye.examprep.R
-import com.baileytye.examprep.data.Result
+import com.baileytye.examprep.databinding.FragmentRetrofitMoshiBinding
+import com.baileytye.examprep.util.addSpacing
 
+/**
+ * Known issue: When returning from details, the recyclerView does not scroll back to where you were
+ */
 class RetrofitMoshiFragment : Fragment() {
 
     private lateinit var viewModel: RetrofitMoshiViewModel
+    private lateinit var binding: FragmentRetrofitMoshiBinding
+    private var clickedView: ImageView? = null
+    private val recyclerAdapter by lazy {
+        RetrofitAdapter(ItemClickListener { item, view ->
+            clickedView = view
+            viewModel.displayPropertyDetails(item)
+        })
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.retrofit_moshi_fragment, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+        binding = DataBindingUtil.inflate(
+            layoutInflater,
+            R.layout.fragment_retrofit_moshi,
+            container,
+            false
+        )
         viewModel = ViewModelProvider(this)[RetrofitMoshiViewModel::class.java]
-        viewModel.properties.observe(viewLifecycleOwner, Observer {
-            when (it) {
-                is Result.Loading -> {
-                    println("DEBUG: Loading")
+        binding.let {
+            it.viewModel = viewModel
+            it.lifecycleOwner = this
+            it.recyclerViewRetrofit.apply {
+                adapter = recyclerAdapter
+                postponeEnterTransition()
+                viewTreeObserver.addOnPreDrawListener {
+                    startPostponedEnterTransition()
+                    true
                 }
-                is Result.Success -> {
-                    println("DEBUG: Success")
-                }
-                is Result.Error -> {
-                    println("DEBUG: Error")
-                }
+                addSpacing()
+
+            }
+        }
+        viewModel.navigateToSelectedProperty.observe(viewLifecycleOwner, Observer { prop ->
+            prop?.let {
+                val extras = clickedView?.let { view ->
+                    FragmentNavigatorExtras(view to "image_${it.id}")
+                } ?: FragmentNavigatorExtras()
+
+                findNavController().navigate(
+                    RetrofitMoshiFragmentDirections.actionRetrofitMoshiFragmentToRetrofitDetailsFragment(
+                        it
+                    ), extras
+                )
+                viewModel.displayPropertyDetailsComplete()
             }
         })
+        return binding.root
     }
-
 }

@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.baileytye.examprep.data.User
 import com.baileytye.examprep.databinding.ItemUserBinding
 
-class UserListAdapter(val clickListener: UserItemListener) :
+class UserListAdapter(private val clickListener: UserItemListener) :
     ListAdapter<User, UserListAdapter.UserViewHolder>(UserDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {

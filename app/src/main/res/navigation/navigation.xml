@@ -71,5 +71,23 @@
         android:id="@+id/retrofitMoshiFragment"
         android:name="com.baileytye.examprep.ui.retrofitMoshi.RetrofitMoshiFragment"
         android:label="retrofit_moshi_fragment"
-        tools:layout="@layout/retrofit_moshi_fragment" />
+        tools:layout="@layout/fragment_retrofit_moshi">
+        <action
+            android:id="@+id/action_retrofitMoshiFragment_to_retrofitDetailsFragment"
+            app:destination="@id/retrofitDetailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:launchSingleTop="true"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/retrofitDetailsFragment"
+        android:name="com.baileytye.examprep.ui.retrofitMoshi.details.RetrofitDetailsFragment"
+        android:label="fragment_retrofit_details"
+        tools:layout="@layout/fragment_retrofit_details">
+        <argument
+            android:name="marsProperty"
+            app:argType="com.baileytye.examprep.data.MarsProperty" />
+    </fragment>
 </navigation>
