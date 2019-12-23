@@ -2,11 +2,19 @@ package com.baileytye.examprep.util
 
 import android.app.Activity
 import android.content.SharedPreferences
+import android.graphics.drawable.Drawable
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.baileytye.examprep.R
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.request.target.Target
 
 fun Activity.hideKeyboard() {
     val imm = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -92,6 +100,45 @@ inline fun <reified T> SharedPreferences.put(key: String, value: T) {
         }
     }
     editor.commit()
+}
+
+fun ImageView.load(
+    url: String,
+    loadOnlyFromCache: Boolean = false,
+    onLoadingFinished: () -> Unit = {}
+) {
+    val listener = object : RequestListener<Drawable> {
+        override fun onLoadFailed(
+            e: GlideException?,
+            model: Any?,
+            target: Target<Drawable>?,
+            isFirstResource: Boolean
+        ): Boolean {
+            onLoadingFinished()
+            return false
+        }
+
+        override fun onResourceReady(
+            resource: Drawable?,
+            model: Any?,
+            target: Target<Drawable>?,
+            dataSource: DataSource?,
+            isFirstResource: Boolean
+        ): Boolean {
+            onLoadingFinished()
+            return false
+        }
+
+    }
+    val requestOptions = RequestOptions.placeholderOf(R.drawable.loading_animation)
+        .dontTransform()
+        .error(R.drawable.ic_broken_image_24dp)
+        .onlyRetrieveFromCache(loadOnlyFromCache)
+    Glide.with(this)
+        .load(url)
+        .apply(requestOptions)
+        .listener(listener)
+        .into(this)
 }
 
 

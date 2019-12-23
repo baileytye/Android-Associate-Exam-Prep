@@ -6,15 +6,12 @@ import android.graphics.drawable.shapes.OvalShape
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.baileytye.examprep.R
 import com.baileytye.examprep.data.MarsProperty
 import com.baileytye.examprep.data.Result
 import com.baileytye.examprep.data.User
 import com.baileytye.examprep.ui.retrofitMoshi.RetrofitAdapter
-import com.bumptech.glide.Glide
 import kotlin.random.Random
 
 //This does nothing better than @{user.firstname} on text xml field, but if formatting is required
@@ -59,13 +56,7 @@ fun View.setVisibility(value: Boolean) {
 
 @BindingAdapter("marsImage")
 fun ImageView.setMarsImage(url: String) {
-    val uri = url.toUri().buildUpon().scheme("https").build()
-    Glide.with(context).load(uri)
-        .placeholder(R.drawable.loading_animation)
-        .error(R.drawable.ic_broken_image_24dp)
-        .centerCrop()
-        .into(this)
-
+    load(url)
 }
 
 @BindingAdapter("listData")

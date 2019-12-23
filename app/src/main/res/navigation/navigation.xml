@@ -70,7 +70,7 @@
     <fragment
         android:id="@+id/retrofitMoshiFragment"
         android:name="com.baileytye.examprep.ui.retrofitMoshi.RetrofitMoshiFragment"
-        android:label="retrofit_moshi_fragment"
+        android:label="Retrofit Example"
         tools:layout="@layout/fragment_retrofit_moshi">
         <action
             android:id="@+id/action_retrofitMoshiFragment_to_retrofitDetailsFragment"
@@ -84,7 +84,7 @@
     <fragment
         android:id="@+id/retrofitDetailsFragment"
         android:name="com.baileytye.examprep.ui.retrofitMoshi.details.RetrofitDetailsFragment"
-        android:label="fragment_retrofit_details"
+        android:label="Shared Tansition"
         tools:layout="@layout/fragment_retrofit_details">
         <argument
             android:name="marsProperty"

@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.baileytye.examprep.R
 import com.baileytye.examprep.data.MarsProperty
 import com.baileytye.examprep.databinding.FragmentRetrofitDetailsBinding
+import com.baileytye.examprep.util.load
 
 class RetrofitDetailsFragment : Fragment() {
 
@@ -35,6 +36,10 @@ class RetrofitDetailsFragment : Fragment() {
         binding.let {
             it.lifecycleOwner = this
             it.viewModel = viewModel
+            it.imageViewHeader.load(property.imgSrcUrl) {
+                //Not sure if I can bind this in XMl since I need fragment scope to postpone transition
+                startPostponedEnterTransition()
+            }
         }
         return binding.root
     }
@@ -46,6 +51,7 @@ class RetrofitDetailsFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        postponeEnterTransition()
         sharedElementEnterTransition =
             TransitionInflater.from(context).inflateTransition(android.R.transition.move)
     }
