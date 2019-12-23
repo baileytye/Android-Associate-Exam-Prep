@@ -1,6 +1,5 @@
 package com.baileytye.examprep.ui.home
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import java.lang.ref.WeakReference
@@ -32,5 +31,9 @@ class HomeViewModel : ViewModel() {
 
     fun startRetrofit() {
         homeNavigator?.get()?.onStartRetrofit()
+    }
+
+    fun startValidation() {
+        homeNavigator?.get()?.onStartValidation()
     }
 }

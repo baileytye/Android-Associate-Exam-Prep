@@ -74,4 +74,9 @@ class HomeFragment : Fragment(), HomeNavigator {
         this.hideKeyboard()
         findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToRetrofitMoshiFragment())
     }
+
+    override fun onStartValidation() {
+        hideKeyboard()
+        findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToValidationFragment())
+    }
 }

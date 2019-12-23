@@ -12,11 +12,15 @@
     <string name="button_recycler_example">Recycler Example</string>
     <string name="button_retrofit_moshi_example">Retrofit + Moshi Example</string>
     <string name="button_clear_shared_prefs">Clear Shared Prefs</string>
+    <string name="button_validation_databinding">Validation + Databinding</string>
+    <string name="button_validate">Validate</string>
 
     <string name="hint_enter_first_name">Enter first name</string>
     <string name="hint_enter_last_name">Enter last name</string>
     <string name="hint_enter_text_above">Enter text above</string>
     <string name="hint_enter_text_to_mirror_below">Enter text to mirror below</string>
+    <string name="hint_enter_email">Enter email</string>
+    <string name="hint_enter_password">Enter password</string>
 
     <string name="menu_share">Share first name</string>
     <string name="menu_home">Home</string>
@@ -25,5 +29,10 @@
     <string name="hours_since_install">Hours since install: %d</string>
 
     <string name="message_undo">Restored user names</string>
+    <string name="message_valid">Email and password valid</string>
+
     <string name="preference_file_key">test_shared_prefs</string>
+
+    <string name="label_password">Password</string>
+    <string name="label_email">Email</string>
 </resources>

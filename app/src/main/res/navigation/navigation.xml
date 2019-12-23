@@ -42,6 +42,9 @@
             app:launchSingleTop="true"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_homeFragment_to_validationFragment"
+            app:destination="@id/validationFragment" />
     </fragment>
     <fragment
         android:id="@+id/mirrorTextFragment"
@@ -90,4 +93,9 @@
             android:name="marsProperty"
             app:argType="com.baileytye.examprep.data.MarsProperty" />
     </fragment>
+    <fragment
+        android:id="@+id/validationFragment"
+        android:name="com.baileytye.examprep.ui.validation.ValidationFragment"
+        android:label="fragment_validation"
+        tools:layout="@layout/fragment_validation" />
 </navigation>

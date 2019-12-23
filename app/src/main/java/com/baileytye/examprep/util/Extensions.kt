@@ -15,6 +15,7 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
+import com.google.android.material.textfield.TextInputLayout
 
 fun Activity.hideKeyboard() {
     val imm = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -139,6 +140,10 @@ fun ImageView.load(
         .apply(requestOptions)
         .listener(listener)
         .into(this)
+}
+
+fun TextInputLayout.clearError() {
+    error = null
 }
 
 

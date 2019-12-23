@@ -13,7 +13,15 @@ class UserListViewModel : ViewModel() {
         get() = _userList
 
     init {
-        _userList.value = mutableListOf(User("Garry", "Smith"), User("John", "Doe"))
+        var id = 0
+        _userList.value = mutableListOf(
+            User("Garry", "Smith", id++),
+            User("John", "Doe", id++),
+            User("John", "Doe", id++),
+            User("John", "Doe", id++),
+            User("John", "Doe", id++),
+            User("John", "Doe", id)
+        )
     }
 
     fun removeUser(user: User) {

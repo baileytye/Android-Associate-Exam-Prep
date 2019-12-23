@@ -6,4 +6,5 @@ interface HomeNavigator {
     fun onStartReceiveUser()
     fun onStartUserList()
     fun onStartRetrofit()
+    fun onStartValidation()
 }

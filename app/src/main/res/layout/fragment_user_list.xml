@@ -5,9 +5,13 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.baileytye.examprep.ui.userList.UserListViewModel" />
     </data>
 
     <androidx.recyclerview.widget.RecyclerView
+        userList="@{viewModel.userList}"
         android:id="@+id/userRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
