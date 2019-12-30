@@ -7,4 +7,5 @@ interface HomeNavigator {
     fun onStartUserList()
     fun onStartRetrofit()
     fun onStartValidation()
+    fun onStartCanvas()
 }

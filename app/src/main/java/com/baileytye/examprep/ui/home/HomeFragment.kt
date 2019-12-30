@@ -94,4 +94,9 @@ class HomeFragment : Fragment(), HomeNavigator {
         hideKeyboard()
         findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToValidationFragment())
     }
+
+    override fun onStartCanvas() {
+        hideKeyboard()
+        findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToPaintFragment())
+    }
 }

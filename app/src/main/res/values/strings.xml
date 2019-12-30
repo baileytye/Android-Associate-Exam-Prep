@@ -41,4 +41,5 @@
     <string name="label_email">Email</string>
     <string name="label_notification_info">Note: this will also send a notification with a pending intent which deep links to the receive user fragment</string>
     <string name="button_snooze">Snooze</string>
+    <string name="button_paint_canvas_example">Paint Canvas Example</string>
 </resources>

@@ -36,4 +36,8 @@ class HomeViewModel : ViewModel() {
     fun startValidation() {
         homeNavigator?.get()?.onStartValidation()
     }
+
+    fun startCanvas() {
+        homeNavigator?.get()?.onStartCanvas()
+    }
 }
