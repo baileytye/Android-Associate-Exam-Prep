@@ -26,7 +26,7 @@ class ExamPrepApplication : Application() {
                 .setRequiresBatteryNotLow(true).build()
 
             val repeatRequest = PeriodicWorkRequestBuilder<UpdateCounterWorker>(
-                1, TimeUnit.HOURS
+                1, TimeUnit.DAYS
             ).setConstraints(constraints)
                 .build()   //Can pass data with setData of type Data. Key value pair
 

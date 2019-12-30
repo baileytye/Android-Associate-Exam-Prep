@@ -1,5 +1,9 @@
 package com.baileytye.examprep.ui
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -37,6 +41,27 @@ class MainActivity : AppCompatActivity() {
         NavigationUI.setupActionBarWithNavController(this, navController, binding.drawerLayout)
         //Setup action bar to correctly display hamburger
         NavigationUI.setupWithNavController(binding.navView, navController)
+        createNotificationChannel()
+    }
+
+    private fun createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val notificationChannel = NotificationChannel(
+                getString(R.string.notification_channel_id),
+                getString(R.string.notification_channel_name),
+                NotificationManager.IMPORTANCE_LOW
+            )
+            notificationChannel.apply {
+                enableLights(true)
+                lightColor = Color.RED
+                enableVibration(true)
+                description = "Notification description"
+            }
+
+            val notificationManager =
+                getSystemService(NotificationManager::class.java) as NotificationManager
+            notificationManager.createNotificationChannel(notificationChannel)
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {

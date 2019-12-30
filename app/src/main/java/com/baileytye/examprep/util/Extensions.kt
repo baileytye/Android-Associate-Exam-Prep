@@ -1,14 +1,23 @@
 package com.baileytye.examprep.util
 
 import android.app.Activity
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.drawable.Drawable
+import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
+import androidx.core.app.NotificationCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavDeepLinkBuilder
 import androidx.recyclerview.widget.RecyclerView
 import com.baileytye.examprep.R
+import com.baileytye.examprep.receiver.SnoozeReceiver
+import com.baileytye.examprep.ui.MainActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
@@ -144,6 +153,48 @@ fun ImageView.load(
 
 fun TextInputLayout.clearError() {
     error = null
+}
+
+fun NotificationManager.sendNotification(
+    message: String,
+    applicationContext: Context,
+    bundle: Bundle
+) {
+
+    val contentPendingIntent = NavDeepLinkBuilder(applicationContext)
+        .setComponentName(MainActivity::class.java)
+        .setGraph(R.navigation.navigation)
+        .setDestination(R.id.receiveUserFragment)
+        .setArguments(bundle)
+        .createPendingIntent()
+
+    val snoozeIntent = Intent(applicationContext, SnoozeReceiver::class.java)
+    val snoozePendingIntent: PendingIntent = PendingIntent.getBroadcast(
+        applicationContext,
+        RC_SNOOZE,
+        snoozeIntent,
+        PendingIntent.FLAG_CANCEL_CURRENT
+    )
+
+    val builder = NotificationCompat.BigTextStyle(
+        NotificationCompat.Builder(
+            applicationContext,
+            applicationContext.getString(R.string.notification_channel_id)
+        )
+            .setSmallIcon(R.drawable.ic_info_black_24dp)
+            .setContentTitle(applicationContext.getString(R.string.notification_title))
+            .setContentText(message)
+            .setAutoCancel(true)
+            .setContentIntent(contentPendingIntent)
+            .addAction(
+                R.drawable.ic_home_black_24dp,
+                applicationContext.getString(R.string.button_snooze),
+                snoozePendingIntent
+            )
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+    )
+
+    notify(NOTIFICATION_ID, builder.build())
 }
 
 

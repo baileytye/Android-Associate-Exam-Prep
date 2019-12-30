@@ -21,8 +21,9 @@
 
         <TextView
             android:id="@+id/textViewFirstName"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:gravity="center"
             android:text="@{userViewModel.user.firstName}"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
@@ -36,8 +37,9 @@
         <!-- You don't need userViewModel.user.value -> it automatically happens  -->
         <TextView
             android:id="@+id/textViewLastName"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
             android:gravity="center"
             android:text="@{@string/surround_with_quotes(userViewModel.user.lastName)}"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"

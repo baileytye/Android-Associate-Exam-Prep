@@ -1,6 +1,7 @@
 package com.baileytye.examprep.ui.home
 
 
+import android.app.NotificationManager
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -16,6 +17,7 @@ import com.baileytye.examprep.databinding.FragmentHomeBinding
 import com.baileytye.examprep.util.get
 import com.baileytye.examprep.util.hideKeyboard
 import com.baileytye.examprep.util.keyCounter
+import com.baileytye.examprep.util.sendNotification
 
 /**
  * A simple [Fragment] subclass.
@@ -55,13 +57,26 @@ class HomeFragment : Fragment(), HomeNavigator {
 
     override fun onStartReceiveUser() {
         this.hideKeyboard()
+
+        val user = User(
+            binding.editTextFirstName.text.toString(),
+            binding.editTextLastName.text.toString()
+        )
+        //This can be moved to viewmodel by having reference to app in there. Should be injected by dagger
+        this.activity?.applicationContext?.let {
+            val notificationManager = requireActivity().getSystemService(
+                NotificationManager::class.java
+            ) as NotificationManager
+
+            //Not sure how to get the name of argument without specifying it
+            notificationManager.sendNotification(
+                binding.editTextFirstName.text.toString(),
+                it,
+                Bundle().apply { putParcelable("receivedUser", user) })
+        }
+
         findNavController().navigate(
-            HomeFragmentDirections.actionHomeFragmentToReceiveTextFragment(
-                User(
-                    binding.editTextFirstName.text.toString(),
-                    binding.editTextLastName.text.toString()
-                )
-            )
+            HomeFragmentDirections.actionHomeFragmentToReceiveTextFragment(user)
         )
     }
 
