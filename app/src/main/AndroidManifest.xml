@@ -15,6 +15,11 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity
+            android:name=".ui.paint.PaintActivity"
+            android:parentActivityName=".ui.MainActivity">
+
+        </activity>
         <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,12 +31,11 @@
         <receiver
             android:name=".receiver.SnoozeReceiver"
             android:enabled="true"
-            android:exported="false"></receiver>
-
+            android:exported="false" />
         <receiver
             android:name=".receiver.UserReceiver"
             android:enabled="true"
-            android:exported="false"></receiver>
+            android:exported="false" />
     </application>
 
 </manifest>

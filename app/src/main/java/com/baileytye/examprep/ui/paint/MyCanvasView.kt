@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Path
+import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewConfiguration
@@ -14,7 +15,8 @@ import kotlin.math.abs
 
 private const val STROKE_WIDTH = 12f
 
-class MyCanvasView(context: Context) : View(context) {
+class MyCanvasView(context: Context, attributeSet: AttributeSet? = null) :
+    View(context, attributeSet) {
 
     private lateinit var extraCanvas: Canvas
     private lateinit var extraBitmap: Bitmap
@@ -55,7 +57,6 @@ class MyCanvasView(context: Context) : View(context) {
     }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
-        println("DEBUG: onTouchEvent")
         motionTouchEventX = event.x
         motionTouchEventY = event.y
 
@@ -68,12 +69,10 @@ class MyCanvasView(context: Context) : View(context) {
     }
 
     private fun touchUp() {
-        println("DEBUG: touchUp")
         path.reset()
     }
 
     private fun touchMove() {
-        println("DEBUG: touchMove")
         val dx = abs(motionTouchEventX - currentX)
         val dy = abs(motionTouchEventY - currentY)
         if (dx >= touchTolerance || dy >= touchTolerance) {
@@ -91,7 +90,6 @@ class MyCanvasView(context: Context) : View(context) {
     }
 
     private fun touchStart() {
-        println("DEBUG: touchStart")
         path.reset()
         path.moveTo(motionTouchEventX, motionTouchEventY)
         currentX = motionTouchEventX
