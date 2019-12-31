@@ -3,7 +3,6 @@ package com.baileytye.examprep.ui.home
 
 import android.app.NotificationManager
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,15 +14,11 @@ import androidx.navigation.fragment.findNavController
 import com.baileytye.examprep.R
 import com.baileytye.examprep.data.User
 import com.baileytye.examprep.databinding.FragmentHomeBinding
-import com.baileytye.examprep.ui.paint.PaintActivity
 import com.baileytye.examprep.util.get
 import com.baileytye.examprep.util.hideKeyboard
 import com.baileytye.examprep.util.keyCounter
 import com.baileytye.examprep.util.sendNotification
 
-/**
- * A simple [Fragment] subclass.
- */
 class HomeFragment : Fragment(), HomeNavigator {
 
     lateinit var binding: FragmentHomeBinding
@@ -99,8 +94,6 @@ class HomeFragment : Fragment(), HomeNavigator {
 
     override fun onStartCanvas() {
         hideKeyboard()
-//        findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToPaintFragment())
-        val intent = Intent(context, PaintActivity::class.java)
-        activity?.startActivityFromFragment(this, intent, 10)
+        findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToPaintFragment())
     }
 }

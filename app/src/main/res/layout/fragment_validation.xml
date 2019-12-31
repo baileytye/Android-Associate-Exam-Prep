@@ -12,131 +12,138 @@
             type="com.baileytye.examprep.ui.validation.ValidationViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:animateLayoutChanges="true"
-        tools:context=".ui.validation.ValidationFragment">
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:animateLayoutChanges="true"
+            tools:context=".ui.validation.ValidationFragment">
 
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/inputLayoutEmail"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            errorText="@{viewModel.emailErrorText}"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            app:errorEnabled="@{viewModel.emailErrorPresent}"
-            app:errorIconDrawable="@null"
-            app:layout_constraintBottom_toTopOf="@+id/inputLayoutPassword"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="packed">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextEmail"
-                android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputLayoutEmail"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                errorText="@{viewModel.emailErrorText}"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="@string/hint_enter_email"
-                android:inputType="textEmailAddress"
-                android:onTextChanged="@{() -> viewModel.clearEmailError()}"
-                android:text="@={viewModel.email}" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                app:errorEnabled="@{viewModel.emailErrorPresent}"
+                app:errorIconDrawable="@null"
+                app:layout_constraintBottom_toTopOf="@+id/inputLayoutPassword"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/inputLayoutPassword"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            errorText="@{viewModel.passwordErrorText}"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:errorEnabled="@{viewModel.passwordErrorPresent}"
-            app:errorIconDrawable="@null"
-            app:layout_constraintBottom_toTopOf="@+id/guideline"
-            app:layout_constraintEnd_toEndOf="@+id/inputLayoutEmail"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="@+id/inputLayoutEmail"
-            app:layout_constraintTop_toBottomOf="@+id/inputLayoutEmail"
-            app:passwordToggleEnabled="true">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_enter_email"
+                    android:inputType="textEmailAddress"
+                    android:onTextChanged="@{() -> viewModel.clearEmailError()}"
+                    android:text="@={viewModel.email}" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextPassword"
-                android:layout_width="match_parent"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/inputLayoutPassword"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                errorText="@{viewModel.passwordErrorText}"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:hint="@string/hint_enter_password"
-                android:inputType="textPassword"
-                android:onTextChanged="@{() -> viewModel.clearPasswordError()}"
-                android:text="@={viewModel.password}" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_marginTop="16dp"
+                app:errorEnabled="@{viewModel.passwordErrorPresent}"
+                app:errorIconDrawable="@null"
+                app:layout_constraintBottom_toTopOf="@+id/guideline"
+                app:layout_constraintEnd_toEndOf="@+id/inputLayoutEmail"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/inputLayoutEmail"
+                app:layout_constraintTop_toBottomOf="@+id/inputLayoutEmail"
+                app:passwordToggleEnabled="true">
 
-        <TextView
-            android:id="@+id/labelEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/label_email"
-            android:textAppearance="@android:style/TextAppearance.Material.Subhead"
-            app:layout_constraintHorizontal_chainStyle="spread"
-            app:layout_constraintStart_toStartOf="@+id/inputLayoutPassword"
-            app:layout_constraintTop_toTopOf="@+id/guideline" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_enter_password"
+                    android:inputType="textPassword"
+                    android:onTextChanged="@{() -> viewModel.clearPasswordError()}"
+                    android:text="@={viewModel.password}" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.5" />
+            <TextView
+                android:id="@+id/labelEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/label_email"
+                android:textAppearance="@android:style/TextAppearance.Material.Subhead"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toStartOf="@+id/inputLayoutPassword"
+                app:layout_constraintTop_toTopOf="@+id/guideline" />
 
-        <TextView
-            android:id="@+id/labelPassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/label_password"
-            android:textAppearance="@android:style/TextAppearance.Material.Subhead"
-            app:layout_constraintStart_toStartOf="@+id/textViewEmail"
-            app:layout_constraintTop_toBottomOf="@+id/textViewEmail" />
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.5" />
 
-        <TextView
-            android:id="@+id/textViewEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@{viewModel.email}"
-            app:layout_constraintStart_toStartOf="@+id/labelEmail"
-            app:layout_constraintTop_toBottomOf="@+id/labelEmail"
-            tools:text="email" />
+            <TextView
+                android:id="@+id/labelPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/label_password"
+                android:textAppearance="@android:style/TextAppearance.Material.Subhead"
+                app:layout_constraintStart_toStartOf="@+id/textViewEmail"
+                app:layout_constraintTop_toBottomOf="@+id/textViewEmail" />
 
-        <TextView
-            android:id="@+id/textViewPassword"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@{viewModel.password}"
-            app:layout_constraintStart_toStartOf="@+id/labelPassword"
-            app:layout_constraintTop_toBottomOf="@+id/labelPassword"
-            tools:text="password" />
+            <TextView
+                android:id="@+id/textViewEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@{viewModel.email}"
+                app:layout_constraintStart_toStartOf="@+id/labelEmail"
+                app:layout_constraintTop_toBottomOf="@+id/labelEmail"
+                tools:text="email" />
 
-        <Button
-            android:id="@+id/buttonValidate"
-            style="@style/Widget.MaterialComponents.Button"
-            loadingButton="@{viewModel.validating}"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:insetTop="0dp"
-            android:insetBottom="0dp"
-            android:onClick="@{() -> viewModel.validate()}"
-            android:paddingHorizontal="16dp"
-            android:text="@string/button_validate"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            app:cornerRadius="12dp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline"
-            app:layout_constraintEnd_toEndOf="@+id/inputLayoutPassword"
-            app:layout_constraintStart_toStartOf="@+id/inputLayoutPassword"
-            app:layout_constraintTop_toBottomOf="@+id/inputLayoutPassword" />
+            <TextView
+                android:id="@+id/textViewPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@{viewModel.password}"
+                app:layout_constraintStart_toStartOf="@+id/labelPassword"
+                app:layout_constraintTop_toBottomOf="@+id/labelPassword"
+                tools:text="password" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <Button
+                android:id="@+id/buttonValidate"
+                style="@style/Widget.MaterialComponents.Button"
+                loadingButton="@{viewModel.validating}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:onClick="@{() -> viewModel.validate()}"
+                android:paddingHorizontal="16dp"
+                android:text="@string/button_validate"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                app:cornerRadius="12dp"
+                app:layout_constraintBottom_toTopOf="@+id/guideline"
+                app:layout_constraintEnd_toEndOf="@+id/inputLayoutPassword"
+                app:layout_constraintStart_toStartOf="@+id/inputLayoutPassword"
+                app:layout_constraintTop_toBottomOf="@+id/inputLayoutPassword" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
 </layout>
