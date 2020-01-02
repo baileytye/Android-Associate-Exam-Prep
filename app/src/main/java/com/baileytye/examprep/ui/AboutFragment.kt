@@ -10,7 +10,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.baileytye.examprep.R
 import com.baileytye.examprep.databinding.FragmentAboutBinding
-import com.baileytye.examprep.util.get
 import com.baileytye.examprep.util.keyCounter
 import com.baileytye.examprep.util.put
 

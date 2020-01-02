@@ -28,6 +28,13 @@
             </intent-filter>
         </activity>
 
+        <!-- This is only required to prevent crash in testing -->
+        <provider
+            android:name="androidx.work.impl.WorkManagerInitializer"
+            android:authorities="${applicationId}.workmanager-init"
+            android:exported="false"
+            tools:node="remove" />
+
         <receiver
             android:name=".receiver.SnoozeReceiver"
             android:enabled="true"

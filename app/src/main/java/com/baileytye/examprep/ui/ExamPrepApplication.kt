@@ -1,10 +1,7 @@
 package com.baileytye.examprep.ui
 
 import android.app.Application
-import androidx.work.Constraints
-import androidx.work.ExistingPeriodicWorkPolicy
-import androidx.work.PeriodicWorkRequestBuilder
-import androidx.work.WorkManager
+import androidx.work.*
 import com.baileytye.examprep.work.UpdateCounterWorker
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -29,6 +26,9 @@ class ExamPrepApplication : Application() {
                 1, TimeUnit.DAYS
             ).setConstraints(constraints)
                 .build()   //Can pass data with setData of type Data. Key value pair
+
+            //This is only required to prevent crash in testing
+            WorkManager.initialize(this@ExamPrepApplication, Configuration.Builder().build())
 
             WorkManager.getInstance(this@ExamPrepApplication).enqueueUniquePeriodicWork(
                 UpdateCounterWorker.WORK_NAME, ExistingPeriodicWorkPolicy.REPLACE, repeatRequest
