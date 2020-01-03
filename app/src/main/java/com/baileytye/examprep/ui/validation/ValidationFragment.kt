@@ -16,7 +16,7 @@ import com.google.android.material.snackbar.Snackbar
 
 class ValidationFragment : Fragment() {
 
-    private lateinit var viewModel: ValidationViewModel
+    lateinit var viewModel: ValidationViewModel
     private lateinit var binding: FragmentValidationBinding
 
     override fun onCreateView(

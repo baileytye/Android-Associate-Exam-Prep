@@ -1,14 +1,21 @@
 package com.baileytye.examprep.ui.validation
 
+import androidx.annotation.NonNull
+import androidx.annotation.Nullable
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.baileytye.examprep.data.Event
-import kotlinx.coroutines.delay
+import com.baileytye.examprep.util.SimpleIdlingResource
 import kotlinx.coroutines.launch
 
+
 class ValidationViewModel : ViewModel() {
+
+    @Nullable
+    private var simpleIdlingResource: SimpleIdlingResource? = null
 
     val email = MutableLiveData("")
 
@@ -67,12 +74,22 @@ class ValidationViewModel : ViewModel() {
     }
 
     fun validate() {
+        simpleIdlingResource?.setIdleState(false)
         viewModelScope.launch {
             validating.value = true
-            delay(1000)
             if (validateEmail() && validatePassword()) _showSnackbarEvent.value = Event(true)
             validating.value = false
+            simpleIdlingResource?.setIdleState(true)
         }
+    }
+
+    @VisibleForTesting
+    @NonNull
+    fun getIdlingResource(): SimpleIdlingResource {
+        if (simpleIdlingResource == null) {
+            simpleIdlingResource = SimpleIdlingResource()
+        }
+        return simpleIdlingResource as SimpleIdlingResource
     }
 }
 
