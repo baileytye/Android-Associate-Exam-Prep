@@ -96,4 +96,9 @@ class HomeFragment : Fragment(), HomeNavigator {
         hideKeyboard()
         findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToPaintFragment())
     }
+
+    override fun onStartPager() {
+        hideKeyboard()
+        findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToPagerFragment())
+    }
 }

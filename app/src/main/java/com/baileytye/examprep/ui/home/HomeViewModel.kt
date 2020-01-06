@@ -40,4 +40,8 @@ class HomeViewModel : ViewModel() {
     fun startCanvas() {
         homeNavigator?.get()?.onStartCanvas()
     }
+
+    fun startPager() {
+        homeNavigator?.get()?.onStartPager()
+    }
 }

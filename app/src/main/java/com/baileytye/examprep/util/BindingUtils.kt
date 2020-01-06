@@ -1,21 +1,27 @@
 package com.baileytye.examprep.util
 
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.ShapeDrawable
 import android.graphics.drawable.shapes.OvalShape
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
+import androidx.viewpager2.widget.ViewPager2
 import com.baileytye.examprep.R
 import com.baileytye.examprep.data.MarsProperty
 import com.baileytye.examprep.data.Result
 import com.baileytye.examprep.data.User
+import com.baileytye.examprep.ui.pager.PagerAdapter
 import com.baileytye.examprep.ui.retrofitMoshi.RetrofitAdapter
 import com.baileytye.examprep.ui.userList.UserListAdapter
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 import com.google.android.material.textfield.TextInputLayout
 import kotlin.random.Random
 
@@ -49,6 +55,20 @@ fun ImageView.setRandomColor(user: User) {
     background = ShapeDrawable(OvalShape()).apply { paint.color = color }
 }
 
+@BindingAdapter("randomBackgroundColor")
+fun ViewGroup.setBackgroundRandomColor(bool: Boolean) {
+    val colors = listOf(
+        Color.BLUE,
+        Color.CYAN,
+        Color.GREEN,
+        Color.RED,
+        Color.YELLOW
+    )
+    val index = Random.nextInt(0, colors.size)
+    val color = colors[index]
+    if (bool) background = ColorDrawable(color)
+}
+
 @BindingAdapter("android:visibility")
 fun View.setVisibility(value: Boolean) {
     visibility = if (value) View.VISIBLE else View.GONE
@@ -73,6 +93,20 @@ fun RecyclerView.bindRecyclerView(data: Result<List<MarsProperty>>) {
         else -> {
         }
     }
+}
+
+@BindingAdapter("pages")
+fun ViewPager2.bindViewPager(data: List<String>) {
+    val adapter = this.adapter as PagerAdapter
+    adapter.submitList(data)
+}
+
+@BindingAdapter("tabs")
+fun TabLayout.setTabs(viewPager: ViewPager2) {
+    TabLayoutMediator(this, viewPager,
+        TabLayoutMediator.TabConfigurationStrategy { tab, position ->
+            tab.text = "Page ${position + 1}"
+        }).attach()
 }
 
 @BindingAdapter("errorText")

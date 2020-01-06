@@ -8,4 +8,5 @@ interface HomeNavigator {
     fun onStartRetrofit()
     fun onStartValidation()
     fun onStartCanvas()
+    fun onStartPager()
 }

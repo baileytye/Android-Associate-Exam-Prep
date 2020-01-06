@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.baileytye.examprep.data.Event
 import com.baileytye.examprep.util.SimpleIdlingResource
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 
@@ -77,6 +78,7 @@ class ValidationViewModel : ViewModel() {
         simpleIdlingResource?.setIdleState(false)
         viewModelScope.launch {
             validating.value = true
+            delay(500)
             if (validateEmail() && validatePassword()) _showSnackbarEvent.value = Event(true)
             validating.value = false
             simpleIdlingResource?.setIdleState(true)

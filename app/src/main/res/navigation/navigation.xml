@@ -44,7 +44,12 @@
             app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_homeFragment_to_validationFragment"
-            app:destination="@id/validationFragment" />
+            app:destination="@id/validationFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:launchSingleTop="true"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_homeFragment_to_paintFragment"
             app:destination="@id/paintFragment"
@@ -52,6 +57,14 @@
             app:exitAnim="@anim/fragment_fade_exit"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_homeFragment_to_pagerFragment"
+            app:destination="@id/pagerFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:launchSingleTop="true"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/mirrorTextFragment"
@@ -109,4 +122,9 @@
         android:id="@+id/paintFragment"
         android:name="com.baileytye.examprep.ui.paint.PaintFragment"
         android:label="PaintFragment" />
+    <fragment
+        android:id="@+id/pagerFragment"
+        android:name="com.baileytye.examprep.ui.pager.PagerFragment"
+        android:label="Pager Example"
+        tools:layout="@layout/fragment_pager" />
 </navigation>
