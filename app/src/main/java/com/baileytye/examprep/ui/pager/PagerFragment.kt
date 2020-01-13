@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import com.baileytye.examprep.R
 import com.baileytye.examprep.data.EventObserver
 import com.baileytye.examprep.databinding.FragmentPagerBinding
@@ -13,7 +13,7 @@ import com.google.android.material.snackbar.Snackbar
 
 class PagerFragment : Fragment() {
 
-    private lateinit var viewModel: PagerViewModel
+    private val viewModel: PagerViewModel by viewModels()
     private lateinit var binding: FragmentPagerBinding
     private val adapter = PagerAdapter()
 
@@ -22,7 +22,6 @@ class PagerFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_pager, container, false)
-        viewModel = ViewModelProvider(this).get(PagerViewModel::class.java)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
         binding.viewPager.apply {

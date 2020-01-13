@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import com.baileytye.examprep.R
 import com.baileytye.examprep.databinding.FragmentUserListBinding
 
@@ -16,7 +16,7 @@ import com.baileytye.examprep.databinding.FragmentUserListBinding
  */
 class UserListFragment : Fragment() {
 
-    private lateinit var viewModel: UserListViewModel
+    private val viewModel: UserListViewModel by viewModels()
     private lateinit var binding: FragmentUserListBinding
     private val adapter by lazy {
         UserListAdapter(UserItemListener {
@@ -33,7 +33,6 @@ class UserListFragment : Fragment() {
             inflater,
             R.layout.fragment_user_list, container, false
         )
-        viewModel = ViewModelProvider(this)[UserListViewModel::class.java]
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
         binding.userRecyclerView.adapter = adapter

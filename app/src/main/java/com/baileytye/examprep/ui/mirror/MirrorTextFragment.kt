@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import com.baileytye.examprep.R
 import com.baileytye.examprep.databinding.FragmentMirrorTextBinding
 
@@ -17,6 +17,7 @@ import com.baileytye.examprep.databinding.FragmentMirrorTextBinding
 class MirrorTextFragment : Fragment() {
 
     lateinit var binding: FragmentMirrorTextBinding
+    private val viewModel: MirrorViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,9 +29,8 @@ class MirrorTextFragment : Fragment() {
         )
 
         binding.apply {
-            binding.mirrorViewModel =
-                ViewModelProvider(this@MirrorTextFragment)[MirrorViewModel::class.java]
-            binding.lifecycleOwner = this@MirrorTextFragment.viewLifecycleOwner
+            mirrorViewModel = viewModel
+            lifecycleOwner = this@MirrorTextFragment.viewLifecycleOwner
         }
 
         return binding.root

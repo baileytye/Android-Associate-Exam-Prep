@@ -8,17 +8,22 @@ import android.view.ViewGroup
 import androidx.core.view.ViewCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import com.baileytye.examprep.R
-import com.baileytye.examprep.data.MarsProperty
 import com.baileytye.examprep.databinding.FragmentRetrofitDetailsBinding
 import com.baileytye.examprep.util.load
 
 class RetrofitDetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentRetrofitDetailsBinding
-    private lateinit var viewModel: RetrofitDetailsViewModel
-    private lateinit var property: MarsProperty
+    private val navArgs: RetrofitDetailsFragmentArgs by navArgs()
+    private val viewModel: RetrofitDetailsViewModel by viewModels {
+        RetrofitDetailsViewModelFactory(
+            navArgs.marsProperty
+        )
+    }
+    private val property by lazy { navArgs.marsProperty }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,12 +31,6 @@ class RetrofitDetailsFragment : Fragment() {
     ): View? {
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_retrofit_details, container, false)
-
-        property = RetrofitDetailsFragmentArgs.fromBundle(arguments!!).marsProperty
-        viewModel = ViewModelProvider(
-            this,
-            RetrofitDetailsViewModelFactory(property)
-        )[RetrofitDetailsViewModel::class.java]
 
         binding.let {
             it.lifecycleOwner = this

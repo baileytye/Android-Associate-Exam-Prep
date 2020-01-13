@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import com.baileytye.examprep.R
 import com.baileytye.examprep.data.EventObserver
 import com.baileytye.examprep.databinding.FragmentValidationBinding
@@ -16,7 +16,7 @@ import com.google.android.material.snackbar.Snackbar
 
 class ValidationFragment : Fragment() {
 
-    lateinit var viewModel: ValidationViewModel
+    private val viewModel: ValidationViewModel by viewModels()
     private lateinit var binding: FragmentValidationBinding
 
     override fun onCreateView(
@@ -24,7 +24,6 @@ class ValidationFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_validation, container, false)
-        viewModel = ViewModelProvider(this).get(ValidationViewModel::class.java)
         binding.let {
             it.viewModel = viewModel
             it.lifecycleOwner = this

@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import com.baileytye.examprep.R
@@ -20,7 +20,7 @@ import com.baileytye.examprep.util.addSpacing
  */
 class RetrofitMoshiFragment : Fragment() {
 
-    private lateinit var viewModel: RetrofitMoshiViewModel
+    private val viewModel: RetrofitMoshiViewModel by viewModels()
     private lateinit var binding: FragmentRetrofitMoshiBinding
     private var clickedView: ImageView? = null
     private val recyclerAdapter by lazy {
@@ -40,7 +40,6 @@ class RetrofitMoshiFragment : Fragment() {
             container,
             false
         )
-        viewModel = ViewModelProvider(this)[RetrofitMoshiViewModel::class.java]
         binding.let {
             it.viewModel = viewModel
             it.lifecycleOwner = this

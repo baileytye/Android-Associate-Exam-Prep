@@ -22,19 +22,19 @@ class RetrofitMoshiViewModel : ViewModel() {
     val navigateToSelectedProperty: LiveData<Event<MarsProperty>>
         get() = _navigateToSelectedProperty
 
-    val contentVisibility = Transformations.map(_properties) {
+    val contentVisibility = _properties.map {
         it is Result.Success
     }
 
-    val loadingVisibility = Transformations.map(_properties) {
+    val loadingVisibility = _properties.map {
         it is Result.Loading
     }
 
-    val errorVisibility = Transformations.map(_properties) {
+    val errorVisibility = _properties.map {
         it is Result.Error
     }
 
-    val errorText = Transformations.map(_properties) {
+    val errorText = _properties.map {
         when (it) {
             is Result.Error -> "Error: ${it.message}"
             else -> ""

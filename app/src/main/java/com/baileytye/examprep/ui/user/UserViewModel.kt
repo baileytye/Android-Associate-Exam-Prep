@@ -2,8 +2,8 @@ package com.baileytye.examprep.ui.user
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.map
 import com.baileytye.examprep.data.Event
 import com.baileytye.examprep.data.User
 
@@ -24,7 +24,7 @@ class UserViewModel(userIn: User) : ViewModel() {
     val showSnackBarEvent: LiveData<Event<Boolean>>
         get() = _showSnackbarEvent
 
-    val undoButtonVisible = Transformations.map(_user) {
+    val undoButtonVisible = _user.map {
         _originalUser != it
     }
 
