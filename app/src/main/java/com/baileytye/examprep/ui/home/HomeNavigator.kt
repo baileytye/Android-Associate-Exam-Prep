@@ -9,4 +9,5 @@ interface HomeNavigator {
     fun onStartValidation()
     fun onStartCanvas()
     fun onStartPager()
+    fun onStartPDF()
 }

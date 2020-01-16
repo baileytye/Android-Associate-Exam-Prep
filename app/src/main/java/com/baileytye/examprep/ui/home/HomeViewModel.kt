@@ -44,4 +44,8 @@ class HomeViewModel : ViewModel() {
     fun startPager() {
         homeNavigator?.get()?.onStartPager()
     }
+
+    fun startPDF() {
+        homeNavigator?.get()?.onStartPDF()
+    }
 }

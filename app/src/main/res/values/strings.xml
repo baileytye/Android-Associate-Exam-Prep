@@ -45,4 +45,5 @@
     <string name="label_password">Password</string>
     <string name="label_email">Email</string>
     <string name="label_notification_info">Note: this will also send a notification with a pending intent which deep links to the receive user fragment</string>
+    <string name="button_launch_intent_for_pdf">Launch Intent for PDF</string>
 </resources>
