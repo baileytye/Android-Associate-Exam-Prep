@@ -10,6 +10,7 @@
             type="com.baileytye.examprep.ui.userList.UserListViewModel" />
     </data>
 
+
     <androidx.recyclerview.widget.RecyclerView
         userList="@{viewModel.userList}"
         android:id="@+id/userRecyclerView"

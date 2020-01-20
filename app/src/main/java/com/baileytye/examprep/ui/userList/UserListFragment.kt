@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.ItemTouchHelper
 import com.baileytye.examprep.R
 import com.baileytye.examprep.databinding.FragmentUserListBinding
 
@@ -19,10 +21,13 @@ class UserListFragment : Fragment() {
     private val viewModel: UserListViewModel by viewModels()
     private lateinit var binding: FragmentUserListBinding
     private val adapter by lazy {
-        UserListAdapter(UserItemListener {
-            viewModel.removeUser(it)
-            println("DEBUG: item clicked, size = ${viewModel.userList.value?.size}")
-        })
+        UserListAdapter(
+            clickListener = UserItemListener {
+                Toast.makeText(context, "Clicked", Toast.LENGTH_SHORT).show()
+            },
+            swipeListener = UserItemSwipeListener {
+                viewModel.removeUser(it)
+            })
     }
 
     override fun onCreateView(
@@ -35,7 +40,11 @@ class UserListFragment : Fragment() {
         )
         binding.viewModel = viewModel
         binding.lifecycleOwner = this
-        binding.userRecyclerView.adapter = adapter
+        binding.apply {
+            userRecyclerView.adapter = adapter
+            val itemTouchHelper = ItemTouchHelper(SwipeToDeleteCallback(adapter))
+            itemTouchHelper.attachToRecyclerView(userRecyclerView)
+        }
         return binding.root
     }
 }
